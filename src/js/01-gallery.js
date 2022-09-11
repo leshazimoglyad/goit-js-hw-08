@@ -2,14 +2,14 @@ import SimpleLightbox from "simple-lightbox";
 import "simple-lightbox/dist/simpleLightbox.min.css";
 
 import { galleryItems } from "./gallery-items.js";
-
-
 function createMarkup(images) {
   return images
   .map(
     ({ preview, original, description }) =>
       `<li><a class="gallery__item" href=${original}>
-<img class="gallery__image" src=${preview} alt="${description}" />
+<img class="gallery__image" 
+src=${preview} 
+alt="${description}" />
 </a></li>`,
   )
   .join('');
@@ -19,7 +19,8 @@ const galleryElement = document.querySelector(`.gallery`);
 galleryElement.innerHTML = createdMarkup;
 
 new SimpleLightbox(".gallery a", {
-    captionsData: "alt",
-    captionDelay: 250,
-    animationSpeed: 250,
-  });
+  captionsData: "alt",
+  captionDelay: 250,
+  animationSpeed: 250,
+});
+
