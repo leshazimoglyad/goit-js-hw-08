@@ -1,5 +1,5 @@
 import SimpleLightbox from "simplelightbox";
-import "simple-lightbox/dist/simpleLightbox.min.css";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 import { galleryItems } from "./gallery-items.js";
 function createMarkup(images) {
