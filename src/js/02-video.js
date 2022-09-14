@@ -16,13 +16,22 @@ import throttle from 'lodash.throttle';
 
 const iframe = document.querySelector('iframe');
 const player = new Vimeo.Player(iframe);
-const TIME_KEY = 'videoplayer-current-time';
+
 player.on('timeupdate', throttle(onPlay, 1000));
 
-function onPlay({ data }) {
-    const stringifyData = JSON.stringify(data);
-  localStorage.setItem(TIME_KEY, stringifyData);
+function onPlay({ seconds }) {
+  localStorage.setItem('videoplayer-current-time', seconds);
 }
 
-player.setCurrentTime(localStorage.getItem('videoplayer-current-time'));
+player.setCurrentTime(localStorage.getItem('videoplayer-current-time')||0);
 
+
+// jQuery('videoplayer-current-time').each(function(){
+//     const seconds = jQuery(this).attr('src');
+//     if(seconds==prev_url || prev_url==null) {
+//     localStorage.setItem('videoplayer-current-time', seconds);
+//     let time = localStorage.getItem('videoplayer-current-time');
+//     player.setCurrentTime(time);
+//     }
+//     });
+//     myPlayer.setCurrentTime(localStorage.getItem(PLAYER_STORAGE_KEY) || 0);
