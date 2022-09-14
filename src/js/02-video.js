@@ -12,17 +12,20 @@
 // };
 // player.on('timeupdate', throttle(onPlay,1000));
 
-// import throttle from 'lodash.throttle';
+import throttle from 'lodash.throttle';
 
-// const iframe = document.querySelector('iframe');
-// const player = new Vimeo.Player(iframe);
+const iframe = document.querySelector('iframe');
+const player = new Vimeo.Player(iframe);
+const PLAYER_KEY = 'videoplayer-current-time';
+player.on('timeupdate', throttle(onPlay, 1000));
 
-// player.on('timeupdate', throttle(onPlay, 1000));
-
-// function onPlay({ seconds }) {
-//   localStorage.setItem('videoplayer-current-time', seconds);
-// }
-
+function onPlay({ seconds }) {
+  localStorage.setItem('videoplayer-current-time', seconds);
+}
+const savedVideoStorage = localStorage.getItem(PLAYER_KEY);
+if (savedVideoStorage) {
+  player.setCurrentTime(savedVideoStorage);
+};
 // player.setCurrentTime(localStorage.getItem('videoplayer-current-time')||0);
 
 
@@ -35,11 +38,11 @@
 //     }
 //     });
 //     myPlayer.setCurrentTime(localStorage.getItem(PLAYER_STORAGE_KEY) || 0);
-import Player from '@vimeo/player';const throttle = require('lodash.throttle');
-const iframe = document.querySelector('iframe');   const myPlayer = new Player(iframe);
-const PLAYER_STORAGE_KEY = 'videoplayer-current-time'; 
+// import Player from '@vimeo/player';const throttle = require('lodash.throttle');
+// const iframe = document.querySelector('iframe');   const myPlayer = new Player(iframe);
+// const PLAYER_STORAGE_KEY = 'videoplayer-current-time'; 
 
-myPlayer.on(  'timeupdate',  throttle(function () {    
-myPlayer.getCurrentTime().then(function (seconds) {      
-localStorage.setItem(PLAYER_STORAGE_KEY, seconds);    });  }, 1000));
-myPlayer.setCurrentTime(localStorage.getItem(PLAYER_STORAGE_KEY) || 0);
+// myPlayer.on(  'timeupdate',  throttle(function () {    
+// myPlayer.getCurrentTime().then(function (seconds) {      
+// localStorage.setItem(PLAYER_STORAGE_KEY, seconds);    });  }, 1000));
+// myPlayer.setCurrentTime(localStorage.getItem(PLAYER_STORAGE_KEY) || 0);
