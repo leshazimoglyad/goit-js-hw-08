@@ -12,27 +12,27 @@
 // };
 // player.on('timeupdate', throttle(onPlay,1000));
 
-import throttle from 'lodash.throttle';
-
-const iframe = document.querySelector('iframe');
-const player = new Vimeo.Player(iframe);
-const PLAYER_KEY = 'videoplayer-current-time';
-player.on('timeupdate', throttle(onPlay, 1000));
-
-function onPlay({ seconds }) {
-  localStorage.setItem(PLAYER_KEY, seconds);
-}
-const savedVideoStorage = localStorage.getItem(PLAYER_KEY);
-if (savedVideoStorage) {
-  player.setCurrentTime(savedVideoStorage);
-};
-
 // import throttle from 'lodash.throttle';
 
 // const iframe = document.querySelector('iframe');
 // const player = new Vimeo.Player(iframe);
 // const PLAYER_KEY = 'videoplayer-current-time';
 // player.on('timeupdate', throttle(onPlay, 1000));
-// function onPlay({ data }) {localStorage.setItem(PLAYER_KEY,data);
 
+// function onPlay({ seconds }) {
+//   localStorage.setItem(PLAYER_KEY, seconds);
 // }
+// const savedVideoStorage = localStorage.getItem(PLAYER_KEY);
+// if (savedVideoStorage) {
+//   player.setCurrentTime(savedVideoStorage);
+// };
+
+import throttle from 'lodash.throttle';
+
+const iframe = document.querySelector('iframe');
+const player = new Vimeo.Player(iframe);
+const PLAYER_KEY = 'videoplayer-current-time';
+player.on('timeupdate', throttle(onPlay, 1000));
+function onPlay({ data }) {localStorage.setItem(PLAYER_KEY,data);
+
+}
