@@ -20,29 +20,19 @@ const PLAYER_KEY = 'videoplayer-current-time';
 player.on('timeupdate', throttle(onPlay, 1000));
 
 function onPlay({ seconds }) {
-  localStorage.setItem('videoplayer-current-time', seconds);
+  localStorage.setItem(PLAYER_KEY, seconds);
 }
 const savedVideoStorage = localStorage.getItem(PLAYER_KEY);
 if (savedVideoStorage) {
   player.setCurrentTime(savedVideoStorage);
 };
-// player.setCurrentTime(localStorage.getItem('videoplayer-current-time')||0);
 
+// import throttle from 'lodash.throttle';
 
-// jQuery('videoplayer-current-time').each(function(){
-//     const seconds = jQuery(this).attr('src');
-//     if(seconds==prev_url || prev_url==null) {
-//     localStorage.setItem('videoplayer-current-time', seconds);
-//     let time = localStorage.getItem('videoplayer-current-time');
-//     player.setCurrentTime(time);
-//     }
-//     });
-//     myPlayer.setCurrentTime(localStorage.getItem(PLAYER_STORAGE_KEY) || 0);
-// import Player from '@vimeo/player';const throttle = require('lodash.throttle');
-// const iframe = document.querySelector('iframe');   const myPlayer = new Player(iframe);
-// const PLAYER_STORAGE_KEY = 'videoplayer-current-time'; 
+// const iframe = document.querySelector('iframe');
+// const player = new Vimeo.Player(iframe);
+// const PLAYER_KEY = 'videoplayer-current-time';
+// player.on('timeupdate', throttle(onPlay, 1000));
+// function onPlay({ data }) {localStorage.setItem(PLAYER_KEY,data);
 
-// myPlayer.on(  'timeupdate',  throttle(function () {    
-// myPlayer.getCurrentTime().then(function (seconds) {      
-// localStorage.setItem(PLAYER_STORAGE_KEY, seconds);    });  }, 1000));
-// myPlayer.setCurrentTime(localStorage.getItem(PLAYER_STORAGE_KEY) || 0);
+// }
