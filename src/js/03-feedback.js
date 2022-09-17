@@ -6,7 +6,8 @@ form.addEventListener('submit', onSubmitForm);
 
 
 function onFormData(e) {
-  let formData = localStorage.getItem('feedback-form-state');    formData = formData ? JSON.parse(formData) : {};
+  let formData = localStorage.getItem('feedback-form-state');  
+    formData = formData ? JSON.parse(formData) : {};
   formData[e.target.name] = e.target.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 }
@@ -24,7 +25,7 @@ function onSubmitForm(e) {
   const message = document.querySelector('.feedback-form textarea');
   if (data) {
     data  = JSON.parse(data );
-    email.value = data.email;
-    message.value = data.message;
+    email.value = data.email || '';
+    message.value = data.message || '';
   }
 })();
