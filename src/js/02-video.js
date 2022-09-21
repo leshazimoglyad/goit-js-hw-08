@@ -33,6 +33,7 @@ const iframe = document.querySelector('iframe');
 const player = new Vimeo.Player(iframe);
 const PLAYER_KEY = 'videoplayer-current-time';
 player.on('timeupdate', throttle(onPlay, 1000));
-function onPlay({ data }) {localStorage.setItem(PLAYER_KEY,data);
+function onPlay({ data }) {
+  localStorage.setItem(PLAYER_KEY,data);
 
 }
